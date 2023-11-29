@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const axios = require('axios').default
 
-
 const fetchCountry = async (searchRequest) => {
     try {
         const response = await axios.get(`https://restcountries.com/v3.1/name/${searchRequest}`)
@@ -13,7 +12,10 @@ const fetchCountry = async (searchRequest) => {
 
 router.get('/countries/name/:searchRequest', async (req, res) => {
     const { searchRequest } = req.params
+
     res.json(await fetchCountry(searchRequest))
 })
+
+
 
 module.exports = router
