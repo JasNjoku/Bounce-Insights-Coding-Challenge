@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import SearchBar from './components/SearchBar';
+import './styles/App.css';
+import axios from 'axios'
 
 function App() {
+
+  const [country, setCountry] = useState()
+
+  const search = async (query) => {
+    const response = await axios.get(`http://localhost:4000/countries/name/${query}`)
+    setCountry(response.data)
+    console.log(response.data)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBar searchFunc={search}/>
     </div>
   );
 }
