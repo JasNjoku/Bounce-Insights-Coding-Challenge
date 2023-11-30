@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const CountryBox = (props) => {
     const country = props.country
@@ -7,7 +7,7 @@ const CountryBox = (props) => {
     return (
         <div className="country-box">
             <img src={country.flagImg} />
-            <button>See More</button>
+            <Link to={`/country/${country.name}`} state={{country: country}}>View More</Link>
         </div>
     )
 }
