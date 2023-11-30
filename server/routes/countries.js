@@ -17,6 +17,7 @@ const fetchCountry = async (searchRequest) => {
                     currencies: country.currencies,
                     flagImg: country.flags.png,
                     googleMapsUrl: country.maps.googleMaps,
+                    languages: country.languages,
                     name: country.name.common,
                     population: country.population,
                     subRegion: country.subregion,
