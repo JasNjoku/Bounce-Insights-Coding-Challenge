@@ -7,7 +7,7 @@ const port = 4000
 app.use(cors())
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Welcome to my Bounce Insights Coding submission.')
 })
 
 app.listen(port, () => {
