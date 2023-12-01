@@ -15,7 +15,7 @@ const CountryPage = () => {
     if ( country === undefined ) {
         return (
             <>
-                <h1>No country selected</h1>
+                <h1>Please use search bar to search for countries.</h1>
             </>
         )
     }
@@ -27,7 +27,7 @@ const CountryPage = () => {
                 <h1>{country.name}</h1>
             </div>
             <div className="country-page-main">
-                <h1>I am country page</h1>
+                
             </div> 
         </div>
     )
