@@ -10,7 +10,19 @@ function App() {
   const [countries, setCountries] = useState([])
   const [query, setQuery] = useState("")
 
+  useEffect(() => {
+    if (!localStorage.getItem("Countries")) {
+      localStorage.setItem("Countries", "[]");
+    } else {
+      setCountries(JSON.parse(localStorage.getItem("Countries")));
+    }
+  }, []); 
 
+  useEffect(() => {
+    if (countries.length > 0) {
+      localStorage.setItem("Countries", JSON.stringify(countries));
+    }
+  }, [countries]);
 
   const search = async (query) => {
     if (document.getElementById("spinning-circle")) {
