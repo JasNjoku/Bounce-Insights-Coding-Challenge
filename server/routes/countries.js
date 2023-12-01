@@ -8,7 +8,7 @@ const fetchCountry = async (searchRequest) => {
 
         const response = await axios.get(`https://restcountries.com/v3.1/name/${searchRequest}`)
 
-        //Check if the response data contains countries
+        //Check if the response data contains countries 
         if (response.status === 200) {
             response.data.forEach(country => {
                 countryData.push({
@@ -24,6 +24,8 @@ const fetchCountry = async (searchRequest) => {
                     timezone: country.timezones
                 })
             })
+        } else {
+            console.log(response.status)
         }
 
         return countryData
@@ -34,10 +36,14 @@ const fetchCountry = async (searchRequest) => {
 
 }
 
+
 router.get('/countries/name/:searchRequest', async (req, res) => {
     const { searchRequest } = req.params
+    
+    if (searchRequest.trim() !== "") {
+        res.json(await fetchCountry(searchRequest))
+    }
 
-    res.json(await fetchCountry(searchRequest))
 })
 
 
