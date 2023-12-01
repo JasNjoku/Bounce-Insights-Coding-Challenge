@@ -29,7 +29,7 @@ function App() {
       document.getElementById("spinning-circle").style.display = "block"
     }
     setCountries([])
-    const response = await axios.get(`http://localhost:4000/countries/name/${query}`)
+    const response = await axios.get(`https://bicc-backend.onrender.com/countries/name/${query}`)
     setQuery(query)
     setCountries(response.data)
   }
