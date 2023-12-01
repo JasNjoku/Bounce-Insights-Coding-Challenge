@@ -1,18 +1,52 @@
+import { useState } from 'react';
+import validator from 'validator';
+
+
 const SearchBar = (props) => {
 
-    
+    const [errorMessage, setErrorMessage] = useState("")
+
+    const validSearchRequest = (word) => {
+        if (validator.isNumeric(word.trim())) {
+            setErrorMessage("Invalid input. Please enter a non-numeric value.")
+            return false;
+        } 
+
+        if (validator.isEmpty(word, {ignore_whitespace: true})) {
+            setErrorMessage("Input cannot be empty. Please enter a valid value.")
+            return false;
+        }
+
+        setErrorMessage("")
+        return true;
+    } 
+
     const search = (e) => {
         e.preventDefault();
         const searchRequest = e.target.querySelector('input').value;
 
-        props.searchFunc(searchRequest)
+        if (validSearchRequest(searchRequest)) {
+            props.searchFunc(searchRequest)
+        }
+        
     }
 
+
     return (
-        <form onSubmit={search}>
-            <input placeholder="Country name"/>
-            <button type="submit">Search</button>
-        </form>
+        <div className="search-page">
+            <form onSubmit={search}>
+                <h1>Find That Country</h1>
+                <div className="form-inputs">
+                    <div className="input-wrapper">
+                        <input required placeholder="Search Country..." />
+                    </div>
+                </div>
+                <div className="form-submit">
+                    <button type="submit">Search</button>
+                </div>
+                {errorMessage !== "" ? <b style={{color:'red'}} id="error-message">{errorMessage}</b> : null}
+            </form>
+        </div>
     )
 }
 
