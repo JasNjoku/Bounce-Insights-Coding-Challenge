@@ -10,10 +10,13 @@ To use the application, you need to have Node.js installed on your machine. Once
 Once the repository has been cloned, navigate to the project directory, and install the required dependencies in both the client folder and the server folder using the following command:
 
 <code>cd client</code>
+
 <code>npm install</code>
 
 <code>cd..</code>
+
 <code>cd server</code>
+
 <code>npm install</code>
 
 ## Usage
@@ -34,3 +37,8 @@ To start the client, navigate to the project directory and run the following com
 The client will be running on port 3000.
 
 Once both the server and client are running, you can access the application by opening your web browser and navigating to http://localhost:3000.
+
+## App Usage
+Start searching for a country by typing in a country of your choice.
+
+Click a country in the sidebar to view information about that country
