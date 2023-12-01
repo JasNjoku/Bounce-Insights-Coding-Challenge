@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import SearchBar from './components/SearchBar';
 import './styles/App.css';
 import axios from 'axios'
-import CountryBox from './components/CountryBox';
+import Results from './components/Results';
 
 
 function App() {
@@ -20,12 +20,24 @@ function App() {
     setCountries(response.data)
   }
 
+  const filter = () => {
+
+  }
+
+  const sort = () => {
+
+  }
+
   
   return (
     <div className="App">
       <SearchBar searchFunc={search}/>
-      {query === "" ? null : <>Showing results for {query} ({countries.length})</>}
-      {countries.length < 1 ? null : countries.map(country => {return <CountryBox key={country.name} country={country}/>})}
+      <Results 
+        query={query}
+        countries={countries}
+
+      />
+
     </div>
   );
 }
