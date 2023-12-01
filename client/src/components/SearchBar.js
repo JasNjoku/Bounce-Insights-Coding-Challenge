@@ -21,12 +21,25 @@ const SearchBar = (props) => {
         return true;
     } 
 
+    const openSideBar = () => {
+        const resultsDiv = document.querySelector('.results');
+        
+        if (resultsDiv.style.width === "40%") {
+            return
+        }
+
+        resultsDiv.style.width = "40%";
+        resultsDiv.style.padding = "0 30px"
+    }
+
     const search = (e) => {
         e.preventDefault();
         const searchRequest = e.target.querySelector('input').value;
 
         if (validSearchRequest(searchRequest)) {
             props.searchFunc(searchRequest)
+            
+            openSideBar()
         }
         
     }
