@@ -5,12 +5,25 @@ import { FaMapMarkerAlt, FaUsers, FaClock } from 'react-icons/fa';
 const CountryPage = () => {
     let { state } = useLocation();
     const [country, setCountry] = useState()
+    const [info, setInfo] = useState()
 
     useEffect(() => {
         if (state) {
             setCountry(state.country)
         }
     }, [state])
+
+    const showInfoModal = (e) => {
+        const id = e.currentTarget.id
+
+        if (id === "MAP") {
+            setInfo({ title: "Google Maps", data: country.googleMapsUrl })
+        } else if (id === "POPULATION") {
+            setInfo({ title: "Population", data: country.population })
+        } else if (id === "TIMEZONES") {
+            setInfo({ title: "Timezones", data: country.timezone })
+        }
+    }
 
 
     if (country === undefined) {
@@ -47,16 +60,26 @@ const CountryPage = () => {
                     </div>
                 </div>
                 <div className="country-page-main">
-                    <div className="round-icon-container">
-                        <FaMapMarkerAlt className="icon" />
+                    <div className="country-page-main-icons">
+                        <div className="round-icon-container" id="MAP" onClick={showInfoModal}>
+                            <FaMapMarkerAlt className="icon" />
+                        </div>
+                        <div className="round-icon-container" id="POPULATION" onClick={showInfoModal}>
+                            <FaUsers className="icon" />
+                        </div>
+                        <div className="round-icon-container" id="TIMEZONES" onClick={showInfoModal}>
+                            <FaClock className="icon" />
+                        </div>
                     </div>
-                    <div className="round-icon-container">
-                        <FaUsers className="icon" />
-                    </div>
-                    <div className="round-icon-container">
-                        <FaClock className="icon" />
-                    </div>
+                    {info !== undefined ? <div id="additional-info">
+                        <h1>{info.title}</h1>
+                        {info.title === "Google Maps" ? <a target="_blank" href={info.data}>View on Google Maps</a> : null}
+                        {info.title === "Population" ? <b>{info.data}</b> : null}
+                        {info.title === "Timezones" ? <ul>{info.data.map(timezone => <li>{timezone}</li>)}</ul> : null}
+                    </div> : null}
+
                 </div>
+
             </main>
         </div>
     )
